@@ -1,0 +1,12 @@
+vim处理模式：
+命令行模式和编辑模式的切换：
+通过i/a等键切换到编辑模式。insert append
+通过esc切换到命令行模式
+
+常用命令：
+新建文件或打开：
+	vim filename
+保存文件write：
+	:w
+关闭文件quit：
+	:q

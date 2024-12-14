@@ -1,0 +1,14 @@
+滤镜命令：
+水印，画中画等
+
+ffmpeg音视频处理流程：
+输入文件-demuxer-》编码数据包-decoder-》解码后数据帧-encoder-》编码数据包-muxer-》输出文件
+
+ffmpeg滤镜：
+解码后的数据帧-filter-》过滤后的数据帧-encoder-》编码后的数据帧
+
+视频裁剪命令：
+ffmpeg -i input.mov -vf crop=in_w-200:in_h-200 -c:v libx264 -c:a copy output.mp4
+-vf video filter 视频滤镜 
+crop滤镜名 in_w视频宽度减去200 in_h视频高度减去200
+-c coder :v video libx264 编码器 :a audio copy直接拷贝

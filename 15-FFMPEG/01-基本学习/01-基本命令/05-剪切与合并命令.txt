@@ -1,0 +1,13 @@
+剪切与合并命令：
+
+音视频裁剪片段：
+ffmpeg -i input.mp4 -ss 00:00:00 -t 10 output.mp4
+-ss 开始时间点 start second 时：分：秒
+-t 截取时长（秒为单位）
+
+音视频合并：
+ffmpeg -f concat -i inputlist.txt output.mp4
+-f concat 拼接操作
+inputlist.txt 中保存了要拼接的音视频的文件列表 格式为如下（需要file开头）：
+file 文件名1
+file 文件名2

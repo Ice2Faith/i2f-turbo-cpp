@@ -1,0 +1,28 @@
+直播推流拉命令：
+
+直播推流：
+ffmpeg -re -i input.mp4 -c copy -f flv rtmp://server/live/stream
+-re 减慢帧率，为了同步推流播放
+-c 音视频编解码
+-f 推流格式
+服务器地址
+
+直播拉流：
+ffmpeg -i rtmp://server/live/stream -c copy output.flv
+直接拉取，不进行编解码，直接拷贝，保存为output.flv
+
+ffplay rtmp://server/live/stream
+直接播放服务器视频
+
+例：
+播放CCTV1的视频：
+ffplay http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8
+保存直播源(源是什么格式，就保存为什么格式)：
+ffmpeg -i http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8 -c copy cctv1hd.m3u8
+
+电视卫视直播源地址：
+http://ivi.bupt.edu.cn/
+
+示例地址：
+http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8
+http://ivi.bupt.edu.cn/hls/zjhd.m3u8

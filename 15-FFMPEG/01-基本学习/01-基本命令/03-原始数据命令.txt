@@ -1,0 +1,22 @@
+原始数据命令：
+yuv pcm 视频，音频的原始数据
+
+提取视频原始yuv数据：
+ffmpeg -i input.mp4 -an -c:v rawvideo -pix_fmt yuv420p output.yuv
+-an 去除音频audio no
+-c 编码code :v 对视频video rawvideo 原始视频格式
+-pix_fmt 像素格式pixel format , yuv420p yuv 4:2:0 其他不常用格式：yuv4:2:2 yuv 4:4:4
+
+当用ffplay播放yuv格式的时候，由于yuv没有封装大小等参数，需要指定分辨率大小
+ffplay -s 720x480 input.yuv
+
+提取音频原始pcm数据：
+ffmpeg -i input.mp4 -vn -ar 44100 -ac 2 -f s16le output.pcm
+-vn video no 去除视频
+-ar audio rate 音频采样率 44100k
+-ac2 audio channel 双声道
+-f format 保存格式 s16le signed 16bit little end 有符号16位小头
+
+当用ffplay播放时，由于没有指定采样率声道数，无法播放
+ffplay -ar 44100 -ac 2 -f s16el input.pcm
+

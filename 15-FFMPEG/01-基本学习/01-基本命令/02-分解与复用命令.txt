@@ -1,0 +1,16 @@
+分解与复用命令：
+媒体格式的转换（依赖后缀），各个平台命令可能略有差异：
+ffmpeg -i input.mp4 -vcodec copy -acodec copy output.flv
+-i 输入文件
+-vcodec copy 视频处理方式为copy
+-acodec copy 音频处理方式为copy
+	copy:保留原来格式数据，比如分辨率，bit率等
+
+抽取视频流：
+ffmpeg -i input.mp4 -an -vcodec copy output.h264
+-an 禁止音频
+
+抽取音频流：
+ffmpeg -i input.mp4 -acodec copy -vn output.mp3
+-vn 禁止视频
+

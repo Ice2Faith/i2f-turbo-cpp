@@ -1,0 +1,125 @@
+这里使用环境变量的方式来配置：
+	简单说，就是把SDL的配置和FFMPEG的配置结合即可
+	模板包：WinSdlFfmapegProject.zip
+		模板包使用说明：
+		方法1：
+			将包复制到目录下：
+				C:\Users\hasee\Documents\Visual Studio 2013\Templates\ProjectTemplates
+				注意：hasee这是我的用户目录，每台电脑的一般不一样，自己对照
+			重新打开VS，即可在C++模块下找到该模板，直接创建这个项目即可。
+		方法2：
+			解压包到一个目录
+			进入VS
+			选择文件-打开-项目/解决方案
+				这个时候你可以运行一遍
+			选择文件-导出模板-选择保存目录
+				由于真正的项目还没有创建，因此需要先保存一个项目
+			选择保存为项目模板-指定一个模板名称-下一步保存
+				这个时候你就可以重新新建一个项目，根据刚才保存的模板
+下载FFMPEG：
+	官方下载链接：www.libsdl.org/
+	找到Download-Development Libraries-Windows: SDL2-devel-2.0.12-VC.zip (Visual C++ 32/64-bit)
+	进行下载
+	
+建立环境变量：
+	(这里以D:\SDL)
+	在D盘创建文件夹SDL
+	解压下载的zip到这个文件夹中，会有include和lib目录
+		D:\SDL\include
+		D:\SDL\lib
+	回到桌面，右键我的电脑-属性-高级属性-环境变量-系统环境变量-新建
+		名称：SDL
+		值：D:\SDL
+	一路完成即可
+	
+下载FFMPEG：
+	官方下载链接：www.libsdl.org/
+	找到Download-Development Libraries-Windows: SDL2-devel-2.0.12-VC.zip (Visual C++ 32/64-bit)
+	进行下载
+	
+建立环境变量：
+	(这里以D:\SDL)
+	在D盘创建文件夹SDL
+	解压下载的zip到这个文件夹中，会有include和lib目录
+		D:\SDL\include
+		D:\SDL\lib
+	回到桌面，右键我的电脑-属性-高级属性-环境变量-系统环境变量-新建
+		名称：SDL
+		值：D:\SDL
+	一路完成即可
+
+配置项目属性：
+	常规配置：
+		项目-属性-配置属性-常规
+		字符集：使用多字节字符集
+	添加VC++目录：
+		项目-属性-配置属性-VC++目录
+		包含目录添加：
+			$(FFMPEG)\include;$(SDL)\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);
+		引用目录添加：
+			$(VC_ReferencesPath_x86);
+		库目录添加(这里使用x86,毕竟兼容性好啊)：
+			$(FFMPEG)\lib;$(SDL)\lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);
+	C/C++配置：
+		项目-属性-配置属性-C/C++-所有选项
+		SDL检查：否（/sdl-）
+		警告等级：等级3（/W3）
+		优化：已禁用（/Od）
+	链接器配置：
+		项目-属性-配置属性-链接器-所有选项
+		附加依赖项：avcodec.lib;avformat.lib;avutil.lib;avdevice.lib;avfilter.lib;postproc.lib;swresample.lib;swscale.lib;sdl2.lib;sdl2main.lib;sdl2test.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)
+		生成调试信息：是（/DEBUG）
+	配置完毕之后，你可以让它保存为模板，下一次使用VS直接按照模板创建项目即可
+		文件-导出模板-项目模板-下一步-下一步
+
+
+给出一个实例代码，用来测试是否配置好了,
+代码先测试SDL环境，输出Hello SDL，
+之后再测试FFMPEG环境，根据命令行参数输出多媒体文件的meta信息，
+因此，使用命令行运行，比如（程序名为hello.exe）：hello.exe test.mp4:
+#include <iostream>
+#include <Sdl.h>
+#define __STDC_CONSTANT_MACROS
+extern "C"
+{
+#include<libavutil/log.h>
+#include<libavformat/avformat.h>
+}
+int main(int argc, char *argv[])
+{
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+	{
+		std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+		return 1;
+	}
+	SDL_Quit();
+	std::cout << "Hello SDL" << std::endl;
+	if (argc < 2)
+	{
+		printf("请添加一个执行媒体文件的参数！\n");
+		system("pause");
+		return 0;
+	}
+	char * inFile = argv[1];
+	//设置日志级别和注册库
+	av_log_set_level(AV_LOG_DEBUG);
+	av_register_all();
+
+	//打开文件放入格式上下文
+	AVFormatContext* fmtContext = NULL;
+	int ret = avformat_open_input(&fmtContext, inFile, NULL, NULL);
+	if (ret<0)
+	{
+		char buffer[1024];
+		av_make_error_string(buffer, 1024 - 1, ret);
+		// av_err2str(ret) 在CPP中这样使用不可行，使用上面这种方法
+		av_log(NULL, AV_LOG_ERROR, "open file failure:%s\n", buffer);
+		return -1;
+	}
+	//打印文件mate信息
+	av_dump_format(fmtContext, 0, inFile, 0);
+
+	avformat_close_input(&fmtContext);
+	system("pause");
+	return 0;
+}

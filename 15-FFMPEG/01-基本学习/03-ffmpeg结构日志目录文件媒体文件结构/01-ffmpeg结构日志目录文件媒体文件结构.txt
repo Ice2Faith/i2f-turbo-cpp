@@ -1,0 +1,170 @@
+ffmpeg代码结构：
+	avcodec
+		提供了一些列解码器的实现
+	avformat
+		实现在流协议，容器格式及基本IO访问
+	avutil
+		包括了hash器，解码器和各种工具函数
+	avfilter
+		提供了各种音视频过滤器
+	avdevice
+		提供了访问捕获设备和回放设备的接口
+	swresample
+		实现了混音和重采样
+	swscale
+		实现了色彩转换和缩放功能
+日志的使用
+	步骤：
+		添加头文件
+			#include<libavutil/log.h>
+		设置日志级别(ERR,INFO,DEBUG...,DEBUG是低级别的，因此所有日志都会打印)
+			av_log_set_level(AV_LOG_DEBUG)
+		打印日志(类似printf的用法)
+			av_log(NULL,AV_LOG_INFO,"%s\n",op)
+	常用日志级别：
+		AV_LOG_ERROR
+		AV_LOG_WARNING
+		AV_LOG_INFO
+		AV_LOG_DEBUG
+		从上至下，级别低的级别包含级别高的级别
+	案例：
+	```c
+		#include<stdio.h>
+		#include<libavutil/log.h> 
+		
+		int main(int argc,char *argv[])
+		{
+			av_log_set_level(AV_LOG_DEBUG);
+			
+			int a=12;
+			char test[]={"hello ffmpeg log"};
+			av_log(NULL,AV_LOG_INFO,"%d %s",index,test);
+			
+			return 0;
+		}
+	```
+		编译：
+			clang -g -o ffmpeg_log ffmpeg_log.c -lavutil
+				指定-g编译调试信息，-o指定输出文件名ffmpeg_log,-l指定使用的库avutil
+		
+文件的操作：
+	删除文件
+		int avpriv_io_delete(char * url)
+			参数：URL字符串，符合URL规则的都可以
+			返回值：大于0成功，小于0失败
+	重命名(移动)
+		int avpriv_io_move(char * srcUrl,char * dstUrl)
+			参数：原地址，目标地址
+			返回值：同上
+	案例：
+	```c
+		#include<stdio.h>
+		#include<libavformat/avformat.h>
+		int main(int argc,char *argv[])
+		{
+			int ret=avpriv_io_delete("./temp.txt");
+			if(ret<0)
+			{
+				printf("delete failure.\n");
+				//推荐使用av_log(),这里为了不混淆头文件，就直接使用了C语言了
+				//av_log(NULL,AV_LOG_ERROR,"delete file faiulre");
+			}
+			ret=avpriv_io_move("temp.txt","temp2.txt");
+			if(ret<0)
+			{
+				printf("move failure\n");
+			}
+			return 0;
+		}
+	```
+	
+目录的操作：
+	打开目录
+		int avio_open_dir(AVIODirContext **，char * openDirUrl,NULL)
+			函数自身分配结构空间
+			参数：目录上下文指针，打开的目录URL，
+			返回值：同上
+	读取目录下的文件信息
+		int avio_reaad_dir(AVIODirContext *,AVIODirEntry **)
+			函数自身分配结构空间，注意使用释放：avio_free_directory_entry(AVIODirEntry **)
+			参数：目录上下文指针，目录项指针
+			返回值：同上
+	关闭目录
+		int auio_close_dir(AVIODirContext *)
+			参数：目录上下文指针
+			返回值：同上
+	结构体：
+		AVIODirContext
+			操作目录的上下文，类似句柄或者目录类对象
+		AVIODirEntry
+			目录项，用于存放文件名，大小，属性等信息
+	案例：
+	```c
+		//实现ls命令
+		#include<stdio.h>
+		#include<libavutil/log.h>
+		#include<libavformat/avformat.h>
+		
+		int main(int argc,char *argv)
+		{
+			av_log_set_level(AV_LOG_INFO);
+			
+			//打开目录
+			AVIODirContext * context=NULL;
+			int ret=avio_open_dir(&context,"./",NULL);//context由函数分配大小，后面的read也一样，注意内存泄漏
+			if(ret<)
+			{
+				//av_err2str 输出错误码信息的函数
+				av_log(NULL,AV_LOG_ERROR,"open dir failure:%s\n",av_err2str(ret));
+				return -1;
+			}
+			
+			//遍历目录
+			AVIODirEntry * entry=NULL;
+			while(1)
+			{
+				//读取目录项
+				ret=avio_reaad_dir(context,&entry);
+				if(ret<)
+				{
+					av_log(NULL,AV_LOG_ERROR,"read dir failure:%s\n",av_err2str(ret));
+					avio_close_dir(&context);//这里也可以使用goto到失败位置标签
+					return -1;
+				}
+				//目录下无新项
+				if(!entry)
+				{
+					break;
+				}
+				//显示读取项,PRId64宏，用于输出64位整数的
+				av_log(NULL,AV_LOG_INFO,"%12"PRId64" %s \n",entry->size,entry->name);
+				avio_free_directory_entry(&entry);//释放申请的空间，避免内存泄漏
+			}
+			//关闭目录
+			avio_close_dir(&context);
+			return 0;
+		}
+	```
+	
+多媒体文件的基本概念
+	多媒体文件实质上是一个容器
+	在容器中有很多的流（轨Stream/Track），流之间的数据相互独立，不想交的
+	每种流是由不同的编码器进行编码的，比如音视频编码器就不一样，音频之间的编码器也不同
+	从流中读出的数据成为包（帧的集合）
+	在一个包中包含这一个或者多个帧（帧：未压缩的数据）
+	帧--包--流--多媒体文件
+	
+	结构体：
+		AVFormatContext
+			格式上下文，连接多个媒体文件的桥梁
+		AVStream
+			多媒体文件的流的读取
+		AVPacket
+			读取流中的数据包
+	
+	操作流的基本步骤：
+		解复用
+		获取流
+		获取数据包
+		释放资源
+	

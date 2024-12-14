@@ -1,0 +1,12 @@
+下载SDL源码：
+	官方下载链接：www.libsdl.org/
+	找到Download-Source Code : SDL2-2.0.12.zip 或者 tar.gz
+	
+编译：
+	解压等Linux基础命令就不再这里说了
+	生成makefile,指定安装目录，命令：
+		configure --prefix=/usr/local
+	执行编译命令：
+		sudo make -j 8 && make install
+	这样就会在/usr/local/lib下面找到libSDL相关的库
+		
