@@ -1,0 +1,6 @@
+DisplayWords.txt
+Random
+---------------------------------
+请将词条文件名（路径）放在第一行
+请将运行模式放到第二行（模式：Center/Up/Down/Right/Left/Random）
+词条按照空格换行符或者制表符分割

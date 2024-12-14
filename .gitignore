@@ -34,6 +34,7 @@
 **/*.xz
 **/*.gz
 **/*.tar
+**/*.apk
 
 ## temp file
 **/~$*
@@ -53,6 +54,7 @@
 **/*.tlog
 **/*.lastbuildstate
 **/*.hlog
+**/*.aps
 Debug
 Release
 

@@ -1,0 +1,6 @@
+开始菜单--Visual Studio 2013--Visual Studio Tools--运行Visual Studio 2013 Command Prompt。
+
+（如果是中文版，显示的“VS2013 开发人员命令提示”）
+cd 到带有sqlite3.def和sqlite3.dll文件的目录
+执行下面语句，即可生成sqlite3.lib文件。
+lib /def:sqlite3.def /machine:ix86

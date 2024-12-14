@@ -1,0 +1,145 @@
+桌面视频壁纸的实现
+	思路：
+		现在 SysListView32 和 Program Manager 分离
+		但是却和 桌面图标 融合了
+		因此就无法通过Z序的方式插入窗口
+		但是，在你设置壁纸的时候，是有平滑过渡的
+		要实现这种平滑过渡，就一定会存在一个执行窗口
+		因此，这个窗口就是要找的
+		通过Spy++监视设置壁纸的过程
+		会发现 SysListView32 的实例 WorkerW 和 Program Manager 之间，
+		创建了一个新的 WorkerW 窗口
+		这个窗口就是我们想要的，问题就是，这个窗口只在设置壁纸的短暂时间存在
+		不能长久的存在
+		经过 Program Manager 收到的消息来看
+		找到一个 0x052C 的消息，这在WinAPI中是没有记录的
+		正是这个消息，创建了一个我们需要的窗口
+		但是存在多个 WorkerW 窗口，因此需要进行枚举
+			// Spy++ output
+			// .....
+			// 0x00010190 "" WorkerW
+			//   ...
+			//   0x000100EE "" SHELLDLL_DefView
+			//     0x000100F0 "FolderView" SysListView32
+			// 0x00100B8A "" WorkerW       <-- 这个窗口就是我们需要的
+			// 0x000100EC "Program Manager" Progman
+		可以看出，在枚举的 WorkerW 中，
+		有一个 WorkerW 的子级存在 SHELLDLL_DefView
+		这个就是桌面图标
+		那么他的下一个 WorkerW 就是目标窗口
+		下面就是调用过程：
+			
+C#代码：
+	// 找到 Progman window 的句柄
+	IntPtr progman = W32.FindWindow("Progman", null);
+	
+	IntPtr result = IntPtr.Zero;
+
+	// 发送 0x052C 给 Progman. 这将会让 Progman 创建一个我们要的 WorkerW
+	W32.SendMessageTimeout(progman, 
+						   0x052C, 
+						   new IntPtr(0), 
+						   IntPtr.Zero, 
+						   W32.SendMessageTimeoutFlags.SMTO_NORMAL, 
+						   1000, 
+						   out result);
+						   
+	
+	IntPtr workerw = IntPtr.Zero;
+
+	// 枚举并拿到我们要的窗口，第一个参数是一个过程调用，这里直接使用匿名对象
+	W32.EnumWindows(new W32.EnumWindowsProc((tophandle, topparamhandle) =>
+	{
+		IntPtr p = W32.FindWindowEx(tophandle, 
+									IntPtr.Zero, 
+									"SHELLDLL_DefView", 
+									IntPtr.Zero);
+
+		if (p != IntPtr.Zero)
+		{
+			// 拿到了我们要的窗口
+			workerw = W32.FindWindowEx(IntPtr.Zero, 
+									   tophandle, 
+									   "WorkerW", 
+									   IntPtr.Zero);
+		}
+
+		return true;
+	}), IntPtr.Zero);
+						   
+	
+	以上，就得到了我们要的 WorkerW 窗口句柄
+	
+	下面，来一个在图标和墙纸之间绘制点图形的示例
+	
+	// 获取 WorkerW 的绘图DC
+	IntPtr dc = W32.GetDCEx(workerw, IntPtr.Zero, (W32.DeviceContextValues)0x403);
+	if (dc != IntPtr.Zero)
+	{
+		// 创建画板给DC
+		using (Graphics g = Graphics.FromHdc(dc))
+		{
+
+			// 使用画板随便画点什么，就一个矩形吧
+			g.FillRectangle(new SolidBrush(Color.White), 0, 0, 500, 500);
+
+		}
+		// 释放DC
+		W32.ReleaseDC(workerw, dc);
+	}
+						   
+	将一般的窗体设置为壁纸，只需要指定父窗口是我们找到的 WorkerW 即可			   
+						   
+现在，使用C++的方式来描述这一个过程			   
+		
+	#include<Windows.h>
+	BOOL CALLBACK EnumWindowProcFindDesktopWindow(HWND hTop, LPARAM lparam)
+	{
+		HWND * hWorkerW = (HWND *)lparam;
+		// 查找 SHELLDLL_DefView 窗体句柄
+		// 存在多个WorkerW窗体，只有底下存在SHELLDLL_DefView的才是
+		HWND hTemp = ::FindWindowEx(
+			hTop, NULL, TEXT("SHELLDLL_DefView"), NULL);
+		if (hTemp == NULL) {
+			return TRUE;
+		}
+
+		// XP 直接查找SysListView32窗体
+		// g_hWorker = ::FindWindowEx(hWndShl, NULL, _T("SysListView32"),_T("FolderView"));
+
+		// win7或更高版本
+		// 查找 WorkerW 窗口句柄(以桌面窗口为父窗口)
+		*hWorkerW = ::FindWindowEx(NULL, hTop, TEXT("WorkerW"), NULL);
+		return (*hWorkerW) == NULL;
+	}
+	HWND GetDesktopWorkerHwnd(){
+		// 背景窗体句柄
+		HWND hProgman = NULL;
+		HWND hWorkerW = NULL;
+		// 遍历桌面所有顶层窗口去查找桌面背景窗口句柄
+		if (hProgman == NULL) {
+			// 先找到Progman 窗口
+			hProgman = ::FindWindowEx(NULL, NULL, TEXT("Progman"), NULL);
+			if (hProgman == NULL) {
+				//找不到Progman窗体
+				return NULL;
+			}
+			// 发送消息 0x052C 到Program Manager窗口，创建一个我们要的目标窗口
+			// win10 1903 下未能成功（无法分离）
+			DWORD_PTR lpdwResult = 0;
+			SendMessageTimeout(hProgman, 0x052C, NULL, NULL, SMTO_NORMAL, 1000, &lpdwResult);
+
+			// 查找到 WorkerW 窗口，设置显示
+			EnumWindows(EnumWindowProcFindDesktopWindow, (LPARAM)&hWorkerW);
+			//::ShowWindowAsync(hWorkerW, 0);
+		}
+		if (hProgman == NULL) {
+			//找不到桌面壁纸层窗体
+			return NULL;
+		}
+		return hWorkerW;
+	}
+
+	这样，我们就可以直接调用GetDesktopWorkerHwnd函数获取的目标窗口的句柄，
+	就可以使用SetParent函数设置自己的窗口为目标窗口的子窗口，就实现了
+	
