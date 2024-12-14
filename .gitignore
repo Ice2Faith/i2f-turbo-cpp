@@ -44,8 +44,6 @@
 ## build file
 **/*.o
 **/*.a
-**/*.lib
-**/*.dll
 **/*.so
 **/*.sdf
 **/*.ilk
@@ -61,9 +59,3 @@ Release
 
 
 ## self doc
-**/*.doc
-**/*.docx
-**/*.ppt
-**/*.pptx
-**/*.xls
-**/*.xlsx
