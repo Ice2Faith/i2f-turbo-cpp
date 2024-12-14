@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17-装饰器模式", "17-装饰器模式\17-装饰器模式.vcxproj", "{7A1824A2-CD8A-4CF0-9BE2-62C3D34E564C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A1824A2-CD8A-4CF0-9BE2-62C3D34E564C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7A1824A2-CD8A-4CF0-9BE2-62C3D34E564C}.Debug|Win32.Build.0 = Debug|Win32
+		{7A1824A2-CD8A-4CF0-9BE2-62C3D34E564C}.Release|Win32.ActiveCfg = Release|Win32
+		{7A1824A2-CD8A-4CF0-9BE2-62C3D34E564C}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
