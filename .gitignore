@@ -39,3 +39,28 @@
 **/~$*
 **/*.bak
 **/*.tmp
+
+## build file
+**/*.o
+**/*.lib
+**/*.dll
+**/*.so
+**/*.sdf
+**/*.ilk
+**/*.pdb
+**/*.idb
+**/*.obj
+**/*.tlog
+**/*.lastbuildstate
+**/*.hlog
+Debug
+Release
+
+
+## self doc
+**/*.doc
+**/*.docx
+**/*.ppt
+**/*.pptx
+**/*.xls
+**/*.xlsx
