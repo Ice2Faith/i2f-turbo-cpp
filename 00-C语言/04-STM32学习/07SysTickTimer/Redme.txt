@@ -1,0 +1,63 @@
+系统定时器
+	之前我们使用CPU空跑的方式来实现延迟，是一种不准确的延迟
+		while(t--);
+	因此，我们需要一个准确的定时器
+	SySTick介绍
+		Cortex-M3的内嵌定时器，被嵌入NVIC中
+		是24位递减，每次计数消耗1/SYSTICK
+		递减到0之后，产生中断，并重新装载初值，重新计时
+		也就是说，知道计数，也就能知道延时
+			
+	SysTick寄存器
+		CTRL控制及状态寄存器
+			bit2 CLKSOURCE 0:8分频后 1：系统时钟直接
+			bit1 TICKINT 1:倒数到0时产生中断
+			bit0 ENABLE 使能位
+			bit16 COUNTFLAG 减为0 值为1，被读取之后，自动清零
+		LOAD重装值寄存器
+			bit0-23: RELOAD 减为0时，从此重载
+		VAL当前值寄存器
+			bit0-23: CURRENT 返回当前计数器中的值，写入则清零
+		CALIB 校准寄存器，不涉及到
+	SysTick配置步骤
+		设置SysTick时钟源（是否八分频）
+		设置SysTick重载值，同时设置是否需要中断
+		清零SysTick当前值
+		打开SysTick
+		
+实现延时函数
+	static u32 fac_us;
+static u32 fac_ms;
+void SysTick_Init(u8 SYSCLK)
+{
+	SysTick_CLKSourceConfig(SysTick_CLKSource_HCLK_Div8);//use div8 frequence 9MHz
+	fac_us=SYSCLK/8;//get one us used tick times
+	fac_ms=(u16)fac_us*1000;//get one ms used tick times
+}
+void delay_us(u32 nus)//max value is 2^24/*8/SYSCLK
+{
+	u32 temp;
+	SysTick->LOAD=nus*fac_us;//reload time
+	SysTick->VAL=0x00;//clear tick
+	SysTick->CTRL|=SysTick_CTRL_ENABLE_Msk;//begin tick
+	do
+	{
+		temp=SysTick->CTRL;//countflag is on bit 16
+	}while((temp&0x01) && !(temp&(1<<16))); //wait time arrive
+	SysTick->CTRL &=~SysTick_CTRL_ENABLE_Msk;//close tick
+	SysTick->VAL=0x00;//clear tick
+}
+void delay_ms(u16 nms)//max value is 2^24*8*1000/SYSCLK=1864ms
+{
+	u32 temp;
+	SysTick->LOAD=(u32)nms*fac_ms;//reload time
+	SysTick->VAL=0x00;//clear tick
+	SysTick->CTRL|=SysTick_CTRL_ENABLE_Msk;//begin tick
+	do
+	{
+		temp=SysTick->CTRL;//countflag is on bit 16
+	}while((temp&0x01) && !(temp&(1<<16))); //wait time arrive
+	SysTick->CTRL &=~SysTick_CTRL_ENABLE_Msk;//close tick
+	SysTick->VAL=0x00;//clear tick
+}
+	

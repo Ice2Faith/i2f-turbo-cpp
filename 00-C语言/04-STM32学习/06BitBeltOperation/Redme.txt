@@ -1,0 +1,76 @@
+位带操作
+	实现IO口的位操作
+	位带介绍
+		51单片机中有sbit
+		但是stm中没有
+		而是通过一个位膨胀为32位的一个字来进行访问，也就是访问32个地址
+	位带区与位带别名区地址转换
+		支持位带操作的区域
+			SRAM的最低1M（APB1/2,AHB外设）和片内外设区最低1M
+			1M的每一个位膨胀为32M的别名区
+			通过访问位带别名区来实现了位带中位的访问
+			一般操作都在片内外设中的GPIO
+		地址转换关系
+			32M位带别名区转1M位带
+			A:目标位所在寄存器的地址
+			n:位序号
+			要点：一个位带区的位会被膨胀成4个字节（32位、1个字）
+			外设位带部分
+				AliasAddr=0x4200 0000 +(A-0x4000 000)*8*4+n*4
+					别名区地址=别名区起始地址+（a-位带区起始地址）*8位*膨胀成4字节+n*膨胀成4字节
+								=别名区起始地址+位带区字节偏移+bit位偏移
+			SRAM位带部分
+				AliasAddr=0x2200 0000+(A-0x2000 0000)*8*4+n*4
+			//进行统一,<<5==*32,<<2==*2
+			#define AliasBitBelt(A,n) ((A & 0xf0000000)+0x02000000+((A & 0x000fffff)<<5)+(n<<2))
+				
+	位带操作优点
+		串行接口的读写
+		单一IO口的操作
+		代码简洁
+	GPIO位带操作
+		volatile:直接对地址操作，防止编译器优化，导致不是对地址操作
+		包含stm32f10x.h之后，GPIOA_BASE等定义已经被定义在其中了，因此不用自己再定义
+		下面就进行位带操作进行封装
+	
+#define BITBAND(addr,bitNum) 	((addr & 0xf0000000)+0x02000000+((addr&0x000fffff)<<5)+(bitNum<<2))
+#define MEM_ADDR(addr)			*((volatile unsigned long *)(addr))
+#define BIT_ADDR(addr,bitNum)	MEM_ADDR(BITBAND(addr,bitNum))
+
+#define GPIOA_ODR_ADDR (GPIOA_BASE+12) //0x4001080c
+#define GPIOB_ODR_ADDR (GPIOB_BASE+12) //0x40010c0c
+#define GPIOC_ODR_ADDR (GPIOC_BASE+12) //0x4001100c
+#define GPIOD_ODR_ADDR (GPIOD_BASE+12) //0x4001140c
+#define GPIOE_ODR_ADDR (GPIOE_BASE+12) //0x4001180c
+#define GPIOF_ODR_ADDR (GPIOF_BASE+12) //0x40011a0c
+#define GPIOG_ODR_ADDR (GPIOG_BASE+12) //0x40011e0c
+
+#define GPIOA_IDR_ADDR (GPIOA_BASE+8) //0x40010808
+#define GPIOB_IDR_ADDR (GPIOB_BASE+8) //0x40010c08
+#define GPIOC_IDR_ADDR (GPIOC_BASE+8) //0x40011008
+#define GPIOD_IDR_ADDR (GPIOD_BASE+8) //0x40011408
+#define GPIOE_IDR_ADDR (GPIOE_BASE+8) //0x40011808
+#define GPIOF_IDR_ADDR (GPIOF_BASE+8) //0x40011a08
+#define GPIOG_IDR_ADDR (GPIOG_BASE+8) //0x40011e08
+
+//n between 0-15 both
+#define PAout(n)	BIT_ADDR(GPIOA_ODR_ADDR,n)
+#define PAin(n)		BIT_ADDR(GPIOA_IDR_ADDR,n)
+
+#define PBout(n)	BIT_ADDR(GPIOB_ODR_ADDR,n)
+#define PBin(n)		BIT_ADDR(GPIOB_IDR_ADDR,n)
+
+#define PCout(n)	BIT_ADDR(GPIOC_ODR_ADDR,n)
+#define PCin(n)		BIT_ADDR(GPIOC_IDR_ADDR,n)
+
+#define PDout(n)	BIT_ADDR(GPIOD_ODR_ADDR,n)
+#define PDin(n)		BIT_ADDR(GPIOD_IDR_ADDR,n)
+
+#define PEout(n)	BIT_ADDR(GPIOE_ODR_ADDR,n)
+#define PEin(n)		BIT_ADDR(GPIOE_IDR_ADDR,n)
+
+#define PFout(n)	BIT_ADDR(GPIOF_ODR_ADDR,n)
+#define PFin(n)		BIT_ADDR(GPIOF_IDR_ADDR,n)
+
+#define PGout(n)	BIT_ADDR(GPIOG_ODR_ADDR,n)
+#define PGin(n)		BIT_ADDR(GPIOG_IDR_ADDR,n)

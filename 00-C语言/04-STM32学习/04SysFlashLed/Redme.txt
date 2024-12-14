@@ -1,0 +1,59 @@
+原理图中：
+	LED0	PB5
+	LED1	PE5
+		LED 正极已经连接3.3v
+		因此要点亮，就给一个GND即可
+GPIO库函数
+	初始化函数
+		void GPIO_Init(GPIO_TypeDef * GPIOx,GPIO_InitTypeDef * GPIO_InitStruct);
+		初始化一个或者多个同一组端口的工作模式、输出速度，也就是两个配置寄存器CRL,CRH
+		参数：都是结构体指针
+			如果有看过之前的定义的话，那么是不难理解的，也就是使用结构体的方式，把寄存器封装在一起
+		示例：
+			GPIO_InitTypeDef initStc;
+			initStc.GPIO_Pin=GPIO_Pin_0|GPIO_Pin_1;//对01IO口设置，你自己位或出来值也行0x3
+			initStc.GPIO_Speed=GPIO_Speed_50MHz;//设置速度
+			initStc.GPIO_Mode=GPIO_Mode_Out_PP;//设置推挽式输出
+			
+			GPIO_Init(GPIOB,&initStc);//调用初始化
+			//因此不难看出，通过位或进行批量设置同一种属性的端口
+			
+	设置输出电平
+		三种方式：也就是BSRR和ODR的操作
+		
+		void GPIO_SetBits(GPIO_TypeDef * GPIOx,uint16_t GPIO_Pin);
+		//不说了，还是位或进行设置，底层BSRR高位操作，输出高电平
+		
+		void GPIO_ResetBits(GPIO_TypeDef * GPIOx,uint16_t GPIO_Pin);
+		//位或，底层BSRR低位操作，输出低电平
+		
+		void GPIO_WriteBit(GPIO_TypeDef * GPIOx,uint16_t GPIO_Pin,BitAction bitVal);
+		//位或，设置值，底层ODR置位
+		void GPIO_Write(GPIO_TypeDef * GPIOx,uint16_t PortVal);
+		//直接设置16位端口的值，所以，也就很少使用了
+		
+	读取输入电平
+		也就是IDR寄存器操作
+		uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef * GPIOx,uint16_t GPIO_Pin);
+		
+		uint16_t GPIO_ReadInputData(GPIO_TypeDef * GPIOx);
+		//不难看出，第一个函数是读取某一个端口的，而第二个函数是直接读取一组的
+		
+	读取输出电平
+		底层通过读取ODR实现
+		uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef * GPIOx,uint16_t GPIO_Pin);
+		
+		uint16_t GPIO_ReadOutputData(GPIO_TypeDef * GPIOx);
+		//同上读取输入
+		
+	【时钟使能】
+		void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph,FunctionalState NewState);
+		不同的外设调用的使能函数可能不同（因为总线不同），以GPIOB为例（在APB2总线上）的使用：
+			RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+		
+		
+		
+		
+		
+		
+		
