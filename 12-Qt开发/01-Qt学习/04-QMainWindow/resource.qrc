@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>cmt.png</file>
+    </qresource>
+</RCC>
