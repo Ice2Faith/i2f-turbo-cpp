@@ -1,0 +1,3 @@
+TARGETNAME=DriverHookKeybord
+TARGETTYPE=DRIVER
+SOURCES=driver.c

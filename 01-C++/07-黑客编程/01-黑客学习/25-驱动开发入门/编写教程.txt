@@ -1,0 +1,32 @@
+下载WDK进行安装 WDK7.6：GRMWDK_EN_7600_1.ISO
+打开x86 Checked Bild Environment命令行
+进入编译文件所在的目录，cd
+执行命令：
+	build/g
+进行编译并运行
+
+但是需要准备两个配置文件：
+	makefile
+	sources
+
+makefile文件不用进行任何修改，复制过来即可
+
+sources文件进行如下修改：
+	TARGETNAME=DriverHello
+	TARGETTYPE=DRIVER
+	SOURCES=driverentry.cpp
+解释：
+	第一行标识变异之后的文件名称，这里就是DriverHello.sys
+	第二行标识编译好的目标类型为驱动类型
+	第三行为源文件的文件名，最好是.c文件，cpp文件有时候会出现一些问题
+
+驱动程序的装载和输出：
+	需要使用驱动装载工具来进行装载
+		比如：KmdManager
+	需要使用工具来驱动的输出
+		比如：DbgView
+
+编译说明：
+	这里有两个版本：Free Checked
+	对应了VS软件的：Release Debug
+	为了方便编写代码和由良好的代码提示，这里可以使用VS的项目进行编写代码。

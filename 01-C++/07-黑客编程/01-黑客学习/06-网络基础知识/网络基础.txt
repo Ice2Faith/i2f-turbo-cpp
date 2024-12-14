@@ -1,0 +1,39 @@
+TCP/IP协议族：互联网通信的主要依赖
+	4个层协议从上而下：应用层、传输层（TCP、UDP）、网际层（IP、ICMP、IGMP）、链路层
+	下层为上层服务，下层对于上层是透明的（在上层看来，并不知道下层的存在）
+
+路由协议：RIP、OSPF、BGP
+
+基于TCP的：FTP、HTTP
+基于UDP的：DNS
+
+IP层提供IP地址标识唯一主机，传输层提供Port标识进程，二者共同主机之间的进程通信
+
+TCP、UDP的端口各有65536个，一般程序端口建议大于1024,1024以下的为保留端口
+
+常用端口号：
+	FTP		TCP		21
+	Telnet	TCP		23
+	SMTP	TCP		25
+	DNS		UDP/TCP	53
+	TFTP	UDP		69
+	HTTP	TCP		80
+	POP3	TCP		110
+	
+面向连接的协议TCP：
+	WinSock函数过程：
+		服务器端：
+			创建套接字--绑定IP端口--监听客户端--接收客户端--发送、接收信息-循环-关闭套接字
+			socket()->bind()->listen()->accept()->send()/recv()->closesocket()
+		客户端：
+			创建套接字--连接服务器--发送、接收信息-循环-关闭套接字
+			socket()->connect()->send()/recv()->closesocket()
+			
+非面向连接的协议UDP：
+	WinSock函数过程：
+		服务器端：
+			创建套接字--绑定监听端口--发送、接收信息-循环-关闭套接字
+			socket()->bind()->sendto()/recvfrom()->closesocket()
+		客户端：
+		创建套接字--发送、接收信息-循环-关闭套接字
+			socket()->sendto()/recvfrom()->closesocket()

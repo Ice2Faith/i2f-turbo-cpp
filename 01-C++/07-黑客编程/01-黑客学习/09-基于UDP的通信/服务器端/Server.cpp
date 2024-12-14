@@ -1,0 +1,43 @@
+//#include<winsock.h>
+#include<WinSock2.h>
+#pragma comment(lib,"ws2_32")
+#include<Windows.h>//注意，在使用WinSock时，包含头文件，Windows.h必须在WinSock.h/WinSock2.h之后，否则会有很多错误
+#include<stdio.h>
+#include<string.h>
+
+int main(int argc, char * argv[])
+{
+	WSADATA wsaData;
+	WSAStartup(MAKEWORD(2, 2), &wsaData);
+
+	//创建套接字
+	SOCKET serverSock = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
+
+	//填充地址信息
+	struct sockaddr_in serverAddr;
+	serverAddr.sin_family = AF_INET;
+	serverAddr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+	serverAddr.sin_port = htons(1021);
+
+	//绑定套接字地址
+	bind(serverSock, (SOCKADDR *)&serverAddr, sizeof(serverAddr));
+
+	//接受消息
+	char buffer[MAXBYTE] = { 0 };
+	struct sockaddr_in clientAddr;
+	int psize = sizeof(clientAddr);
+	recvfrom(serverSock, buffer, MAXBYTE, 0,(SOCKADDR *) &clientAddr, &psize);
+	printf("Client %s:%d Say:%s\n", inet_ntoa(clientAddr.sin_addr), ntohs(clientAddr.sin_port), buffer);
+
+	//发送消息
+	strcpy(buffer, "Hello Client!");
+	sendto(serverSock, buffer, strlen(buffer) + 1, 0, (SOCKADDR *)&clientAddr, sizeof(clientAddr));
+
+	//清理
+	closesocket(serverSock);
+
+	WSACleanup();
+
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,62 @@
+添加文件右键菜单（也就是在文件上右键时）：
+	1.打开注册表键
+		HKEY_CLASSES_ROOT\*\shell
+	2.添加文件右键菜单名称：
+		在下面新建一个项，比如Test,默认值设置为：文件右键测试（这个默认值就是现实在文件右键菜单的内容）
+	3.添加右键菜单图标：
+		给Test项新建一个字符串值，名称为icon,值为你的程序的名称加上,0(比如程序：C:\test\test.exe,0)
+	4.添加右键响应事件：
+		在Test项新建一个项，名称为command,默认值为程序名称（比如：C:\test\test.exe），如果有命令行参数就加上
+
+
+添加目录右键菜单（也就是在文件夹内右键时，桌面也是一个文件夹）：
+	1.打开注册表键：
+		HKEY_CLASSES_ROOT\Directory\Background\shell
+	2.添加桌面右键菜单名：
+		在下面新建一个项（这个项名就是现实在桌面右键菜单的名字，这里以Test为例）
+	3.添加右键菜单图标：
+		给Test项新建一个字符串值，名称为icon,值为你的程序的名称加上,0(比如程序：C:\test\test.exe,0)
+	4.添加右键响应事件：
+		在Test项新建一个项，名称为command,默认值为程序名称（比如：C:\test\test.exe），如果有命令行参数就加上
+
+总结：
+	也就是在两个注册表子键上添加新项即可，剩余的系统会进行关联操作。
+
+添加二级菜单：
+	说白了就是为一个键指定他的子键列表
+	方法一：这一个方法，本人没有测试成功
+		分为两部分：
+			创建好子键
+				1.打开注册表键
+					HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell
+				2.按照上面的“添加文件右键菜单”步骤添加一个项（以SubTest为例，同样的方式再添加一个项SubTest2）
+			创建父键并指向子键
+				1.打开注册表键
+					HKEY_CLASSES_ROOT\Directory\Background\shell
+				2.同样添加项和右键菜单名和图标（项以Test为例）
+				3.添加它的子键（也就是二级菜单）：
+					给Test项新建一个字符串值，名称为SubCommands,值为你的子键名称（每个子键之间用分号隔开，比如上面添加的：SubTest;SubTest2）
+	方法二：这个方法测试成功
+		1.打开注册表键
+			HKEY_CLASSES_ROOT\Directory\Background\shell
+		2.同样添加项和右键菜单名和图标（项以Test为例）
+		3.添加显示文字：
+			给Test项新建一个字符串值，名称为MUIVerb,值为你要显示的内容(比如程序：这是一个测试)，注意这个一定要，否则不会显示，默认值那里直接留空
+		4.添加它的子键（也就是二级菜单）：
+			给Test项新建一个字符串值，名称为SubCommands,值为你的子键名称（这里以Test1,Test2为例，那么值为：Test1;Test2）
+		5.给Test项添加子项：shell
+		6.在刚才添加的shell下面分别添加Test1,Test2两个子项，分别设置这两个子项的图标icon和执行文件命令command(和上面一样，不在赘述)
+		形成结构树：(可以拓展到三级菜单，目前测试通过，更多级没有测试)
+			HKEY_CLASSES_ROOT\Directory\Background\shell
+				Test > icon MUIVerb SubCommands
+					shell
+						Test1 > icon 
+							command
+						Test2 > icon MUIVerb SubCommands
+							shell
+								Test > icon
+									command
+			
+如果还是不明白，查看原作者博客：
+	https://blog.csdn.net/amdd9582/article/details/83025287
+	https://blog.csdn.net/mzYangMao/article/details/82912913?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task

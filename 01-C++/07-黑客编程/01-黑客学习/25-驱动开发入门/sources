@@ -1,0 +1,3 @@
+TARGETNAME=DriverHello
+TARGETTYPE=DRIVER
+SOURCES=driverentry.c

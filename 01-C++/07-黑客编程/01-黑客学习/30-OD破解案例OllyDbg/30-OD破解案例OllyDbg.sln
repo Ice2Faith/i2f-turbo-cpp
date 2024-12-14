@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "破解我", "破解我\破解我.vcxproj", "{CFEABDD5-2370-4594-89AC-A7D3E7146511}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "登录验证模拟破解", "登录验证模拟破解\登录验证模拟破解.vcxproj", "{87A2560B-0B40-49F0-BF4F-2A955D6FC074}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFEABDD5-2370-4594-89AC-A7D3E7146511}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CFEABDD5-2370-4594-89AC-A7D3E7146511}.Debug|Win32.Build.0 = Debug|Win32
+		{CFEABDD5-2370-4594-89AC-A7D3E7146511}.Release|Win32.ActiveCfg = Release|Win32
+		{CFEABDD5-2370-4594-89AC-A7D3E7146511}.Release|Win32.Build.0 = Release|Win32
+		{87A2560B-0B40-49F0-BF4F-2A955D6FC074}.Debug|Win32.ActiveCfg = Debug|Win32
+		{87A2560B-0B40-49F0-BF4F-2A955D6FC074}.Debug|Win32.Build.0 = Debug|Win32
+		{87A2560B-0B40-49F0-BF4F-2A955D6FC074}.Release|Win32.ActiveCfg = Release|Win32
+		{87A2560B-0B40-49F0-BF4F-2A955D6FC074}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

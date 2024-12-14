@@ -1,0 +1,2 @@
+1>warnings in directory e:\mysystemdefaultfiles\desktop\07学习工具\01-学习日志\01-c++\07-黑客编程\01-黑客学习\28-内核驱动下的注册表操作\28-内核驱动下的注册表操作
+1>e:\mysystemdefaultfiles\desktop\07学习工具\01-学习日志\01-c++\07-黑客编程\01-黑客学习\28-内核驱动下的注册表操作\28-内核驱动下的注册表操作\driver.c(186) : warning 1>e:\mysystemdefaultfiles\desktop\07学习工具\01-学习日志\01-c++\07-黑客编程\01-黑客学习\28-内核驱动下的注册表操作\28-内核驱动下的注册表操作\driver.c(186) : warning C4024: 'ZwQueryValueKey' : different typ1>e:\mysystemdefaultfiles\desktop\07学习工具\01-学习日志\01-c++\07-黑客编程\01-黑客学习\28-内核驱动下的注册表操作\28-内核驱动下的注册表操作\driver.c(191) : warning C4996: 'ExAl

