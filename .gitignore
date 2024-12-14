@@ -43,6 +43,7 @@
 
 ## build file
 **/*.o
+**/*.a
 **/*.lib
 **/*.dll
 **/*.so

@@ -1,0 +1,821 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\ComputerGraphics.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
+    "#include ""l.chs\\afxprint.rc""        // printing/print preview resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\ComputerGraphics.ico"
+IDR_MYTYPE              ICON                    "res\\ComputerGraphicsDoc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR 16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "画笔(&P)"
+    BEGIN
+        MENUITEM "颜色(&C)",                      ID_PEN_COLOR
+        MENUITEM "大小(&S)",                      ID_PEN_SIZE
+    END
+    POPUP "画刷(&B)"
+    BEGIN
+        MENUITEM "颜色(&C)",                      ID_BRUSH_COLOR
+    END
+    POPUP "绘图(&D)"
+    BEGIN
+        MENUITEM "指针",                          ID_DRAW_NULL
+        MENUITEM "点(&P)",                       ID_DRAW_POINT
+        MENUITEM "线(&L)",                       ID_DRAW_LINE
+        MENUITEM "曲线",                          ID_DRAW_CONLINE
+        MENUITEM "圆(&C)",                       ID_DRAW_CIRCLE
+        MENUITEM "椭圆(&E)",                      ID_DRAW_ELIPESE
+        MENUITEM "矩形(&R)",                      ID_DRAW_RECTANGLE
+        MENUITEM "圆角矩形(&V)",                    ID_MENUITEM32781
+        MENUITEM "弧线(&A)",                      ID_DRAW_ARC
+        MENUITEM "多边形(&P)",                     ID_DRAW_POLYGON
+        MENUITEM "封闭线段",                        ID_DRAW_POLYLINE
+        MENUITEM "Bezier曲线(&B)",                ID_DRAW_BEZIERLINE
+        MENUITEM "喷枪",                          ID_DRAW_GON
+        MENUITEM "橡皮",                          ID_DRAW_CLEANER
+    END
+    POPUP "TM文件(&T)"
+    BEGIN
+        MENUITEM "打开(&O)",                      ID_TMFILE_OPEN
+        MENUITEM "保存(&S)",                      ID_TMFILE_SAVE
+        MENUITEM "",                            ID_MENUITEM32814
+    END
+    POPUP "几何模型(&G)"
+    BEGIN
+        MENUITEM "四面体",                         ID_GEOMOD_TETR
+        MENUITEM "六面体",                         ID_GEOMOD_HEX
+        MENUITEM "八面体",                         ID_GEOMOD_OCT
+        MENUITEM "十二面体",                        ID_GEOMOD_DODEC
+        MENUITEM "二十面体",                        ID_GEOMOD_ICOS
+        MENUITEM "球体",                          ID_GEOMOD_BALL
+        MENUITEM "圆柱体",                         ID_GEOMOD_CYLINDER
+        MENUITEM "圆锥体",                         ID_GEOMOD_CONE
+        MENUITEM "圆环体",                         ID_GEOMOD_TORUS
+        MENUITEM "递归划分球",                       ID_GEOMOD_BALLEX
+    END
+    POPUP "三角化(&V)"
+    BEGIN
+        MENUITEM "三角化",                         ID_TRANGLELIZED
+    END
+    POPUP "曲线建模(&B)"
+    BEGIN
+        MENUITEM "Bezier曲线绘制",                  ID_LINEMODE_BEZIER
+        MENUITEM "编辑控制点",                       ID_LINEMOD_EDIT
+        MENUITEM "创建Y旋转体",                      ID_LINEMOD_BEZIERYSPIN
+        MENUITEM "创建X旋转体",                      ID_LINEMOD_BEZIERXSPIN
+        MENUITEM "PolyLine折线绘制",                ID_LINEMODE_POLYLINE
+    END
+    POPUP "光栅显示(&F)"
+    BEGIN
+        MENUITEM "DDA直线",                       ID_SCANDIS_DDALINE
+        MENUITEM "wu反走样直线",                     ID_SCANDIS_ANTIALIASLINE
+        MENUITEM "种子填充",                        ID_SCAN_SEEDFILL
+        MENUITEM "三角填充",                        ID_SCAN_TRANGLEFILL
+    END
+    POPUP "变换投影(&P)"
+    BEGIN
+        MENUITEM "变换",                          ID_GRAPH_VARY
+        MENUITEM "正交投影",                        ID_PROJ_ORTHOGONAL
+        MENUITEM "主视图",                         ID_PROJ_MAINVIEW
+        MENUITEM "侧视图",                         ID_PROJ_SIDEVIEW
+        MENUITEM "俯视图",                         ID_PROJ_TOPVIEW
+        MENUITEM "斜投影",                         ID_PROJ_OBLIQUE
+        MENUITEM "透视投影",                        ID_PROJ_WORDTOSCREEN
+        MENUITEM "一点透视",                        ID_PROJ_ONEPOINT
+        MENUITEM "两点透视",                        ID_PROJ_TWOPOINT
+        MENUITEM "三点透视",                        ID_PROJ_THREEPOINT
+        MENUITEM "屏幕深度透视",                      ID_PROJ_DEEPSCREEN
+    END
+    POPUP "模型消隐(&H)"
+    BEGIN
+        MENUITEM "背面剔除",                        ID_MODHIDE_BACKREMOVE
+        MENUITEM "深度缓冲",                        ID_MODHIDE_DEEPBUFF
+        MENUITEM "不使用",                         ID_MODHIDE_NONE
+    END
+    POPUP "模型光照(&L)"
+    BEGIN
+        MENUITEM "平面着色",                        ID_MODLIGHT_FLAT
+        MENUITEM "材质",                          ID_MODLIGHT_MATERIAEX
+        MENUITEM "灯光",                          ID_MODLIGHT_LIGHT
+        MENUITEM "不使用",                         ID_MODLIGHT_NONE
+    END
+    POPUP "显示模式"
+    BEGIN
+        MENUITEM "点云",                          ID_DISMOD_POINTCLOUD
+        MENUITEM "线框",                          ID_DISMOD_LINEAR
+        MENUITEM "片面",                          ID_DISMOD_FLAT
+        MENUITEM "不绘制模型",                       ID_DISMOD_NONE
+        MENUITEM "清空绘图",                        ID_DISMOD_CLEANPAINTER
+        MENUITEM "显示坐标轴",                       ID_SHOW_ORGLINE
+        MENUITEM "隐藏坐标线",                       ID_HIDE_ORGLINE
+    END
+    POPUP "动画(&C)"
+    BEGIN
+        MENUITEM "动画设置",                        ID_CARTON_SETTING
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 ComputerGraphics(&A)...",  ID_APP_ABOUT
+        MENUITEM "操作说明(&H)",                    ID_OPERATION_TIPS
+        MENUITEM "基础操作预览",                      ID_OPERATION_BASEOPE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 ComputerGraphics"
+FONT 9, "宋体"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,21,21
+    LTEXT           "ComputerGraphics 1.0 版",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "版权所有 (C) 2019 - Ugex.Savelar",IDC_STATIC,40,25,181,8
+    DEFPUSHBUTTON   "确定",IDOK,178,7,50,14,WS_GROUP
+END
+
+IDD_DLG_COLOR DIALOG 0, 0, 187, 94
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "颜色设置框"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,130,73,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,73,50,14
+    CONTROL         "Slider1",IDC_SLIDER_RED,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,33,11,129,15
+    CONTROL         "Slider2",IDC_SLIDER_GREEN,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,32,30,130,15
+    CONTROL         "Slider3",IDC_SLIDER_BLUE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,31,49,131,15
+    LTEXT           "红",IDC_STATIC_RED,13,13,9,8
+    LTEXT           "绿",IDC_STATIC_GREEN,13,33,9,8
+    LTEXT           "蓝",IDC_STATIC_BLUE,13,49,9,8
+END
+
+IDD_DLG_SIZE DIALOG 0, 0, 187, 94
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "尺寸设置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,130,73,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,73,50,14
+    CONTROL         "Slider1",IDC_SLIDER_SIZE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,67,28,100,15
+    LTEXT           "大小",IDC_STATIC_SIZE,25,32,17,8
+END
+
+IDD_DLG_INPUTBOX DIALOGEX 0, 0, 187, 94
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "输入框"
+FONT 10, "System", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,130,73,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,73,50,14
+    EDITTEXT        IDC_EDIT_INPUT,23,35,139,14,ES_AUTOHSCROLL
+    LTEXT           "请输入：",IDC_STATIC_TIPS,22,18,143,8
+END
+
+IDD_DLG_GVARY DIALOG 0, 0, 305, 230
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "变换投影设置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,240,146,58,38
+    PUSHBUTTON      "取消",IDCANCEL,239,189,59,34
+    GROUPBOX        "投影旋转角",IDC_STATIC_PROJANGLE,7,7,140,30
+    LTEXT           "a",IDC_STATIC_PROJAANGLE,24,23,8,8
+    EDITTEXT        IDC_EDIT_PROJAANGLE,35,17,30,14,ES_AUTOHSCROLL
+    LTEXT           "b",IDC_STATIC_PROJBANGLE,88,22,8,8
+    EDITTEXT        IDC_EDIT_PROJBANGLE,102,16,31,14,ES_AUTOHSCROLL
+    LTEXT           "R",IDC_STATIC_VIEWR,169,23,8,8
+    EDITTEXT        IDC_EDIT_VIEWR,177,18,30,14,ES_AUTOHSCROLL
+    LTEXT           "d",IDC_STATIC_VIEWD,230,23,8,8
+    EDITTEXT        IDC_EDIT_VIEWD,241,17,31,14,ES_AUTOHSCROLL
+    GROUPBOX        "视半径",IDC_STATIC_VIEW,155,7,143,29
+    LTEXT           "Near",IDC_STATIC_VIEWNEAR,11,55,17,8
+    EDITTEXT        IDC_EDIT_VIEWRNEAR,34,50,31,14,ES_AUTOHSCROLL
+    LTEXT           "Far",IDC_STATIC_VIEWDFAR,87,52,15,8
+    EDITTEXT        IDC_EDIT_VIEWDFAR,103,50,31,14,ES_AUTOHSCROLL
+    GROUPBOX        "远近切面",IDC_STATIC_FNFLAT,7,39,141,29
+    LTEXT           "x",IDC_STATIC_GMOVEX,159,60,8,8
+    EDITTEXT        IDC_EDIT_GMOVEX,167,55,30,14,ES_AUTOHSCROLL
+    LTEXT           "y",IDC_STATIC_GMOVEY,202,60,8,8
+    EDITTEXT        IDC_EDIT_GMOVEY,213,55,31,14,ES_AUTOHSCROLL
+    GROUPBOX        "图形平移",IDC_STATIC_GMOVE,155,44,143,29
+    LTEXT           "z",IDC_STATIC_GMOVEZ,250,60,8,8
+    EDITTEXT        IDC_EDIT_GMOVEZ,262,54,31,14,ES_AUTOHSCROLL
+    LTEXT           "x",IDC_STATIC_GSCALEX,157,92,8,8
+    EDITTEXT        IDC_EDIT_GSCALEX,165,87,30,14,ES_AUTOHSCROLL
+    LTEXT           "y",IDC_STATIC_GSCALEY,200,92,8,8
+    EDITTEXT        IDC_EDIT_GSCALEY,211,87,31,14,ES_AUTOHSCROLL
+    GROUPBOX        "图形比例",IDC_STATIC_GSCALE,153,76,145,29
+    LTEXT           "z",IDC_STATIC_GSCALEZ,248,92,8,8
+    EDITTEXT        IDC_EDIT_GSCALEZ,260,86,31,14,ES_AUTOHSCROLL
+    LTEXT           "x",IDC_STATIC_GSPINX,11,87,8,8
+    EDITTEXT        IDC_EDIT_GSPINX,19,82,30,14,ES_AUTOHSCROLL
+    LTEXT           "y",IDC_STATIC_GSPINY,54,87,8,8
+    EDITTEXT        IDC_EDIT_GSPINY,65,82,31,14,ES_AUTOHSCROLL
+    GROUPBOX        "图形旋转",IDC_STATIC_GSPIN,7,71,141,29
+    LTEXT           "z",IDC_STATIC_GSPINZ,102,87,8,8
+    EDITTEXT        IDC_EDIT_GSPINZ,114,81,31,14,ES_AUTOHSCROLL
+    CONTROL         "x",IDC_CHECK_GREFLACTX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,169,119,20,10
+    CONTROL         "y",IDC_CHECK_GREFLACTY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,214,118,20,10
+    CONTROL         "z",IDC_CHECK_GREFLACTZ,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,261,120,20,10
+    GROUPBOX        "轴反射",IDC_STATIC_GREFLACE,154,104,144,32
+    CONTROL         "xoy",IDC_CHECK_GFLATREFXOY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,120,28,10
+    CONTROL         "yoz",IDC_CHECK_GFLATREFYOZ,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,67,119,28,10
+    CONTROL         "xoz",IDC_CHECK_GFLATREFXOZ,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,121,28,10
+    GROUPBOX        "面反射",IDC_STATIC_GFLATREF,7,105,140,32
+    GROUPBOX        "错切",IDC_STATIC_GMISCUT,7,141,222,50
+    LTEXT           "xgz",IDC_STATIC_GMISCUTXGZ,14,159,13,8
+    LTEXT           "xdy",IDC_STATIC_GMISCUTXDY,14,175,13,8
+    EDITTEXT        IDC_EDIT_GMISCUTXGZ,30,155,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_GMISCUTXDY,30,173,40,14,ES_AUTOHSCROLL
+    LTEXT           "yhz",IDC_STATIC_GMISCUTYHZ,86,159,13,8
+    LTEXT           "ybx",IDC_STATIC_GMISCUTYBX,86,175,13,8
+    EDITTEXT        IDC_EDIT_GMISCUTYHZ,104,155,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_GMISCUTYBX,104,173,40,14,ES_AUTOHSCROLL
+    LTEXT           "zfy",IDC_STATIC_GMISCUTZFY,158,160,11,8
+    LTEXT           "zcx",IDC_STATIC_GMISCUTZCX,158,176,13,8
+    EDITTEXT        IDC_EDIT_GMISCUTZFY,174,156,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_GMISCUTZCX,174,174,40,14,ES_AUTOHSCROLL
+    CONTROL         "平移",IDC_CHECK_MOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,201,32,10
+    CONTROL         "旋转",IDC_CHECK_SPIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,201,32,10
+    CONTROL         "比例",IDC_CHECK_SCALE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,74,202,32,10
+    CONTROL         "面反射",IDC_CHECK_FALTREF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,109,203,40,10
+    CONTROL         "轴反射",IDC_CHECK_REFLACT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,154,202,40,10
+    CONTROL         "错切",IDC_CHECK_MISCUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,203,32,10
+END
+
+IDD_DLG_METERIAL DIALOG 0, 0, 123, 99
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "材质选择器"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,66,78,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,78,50,14
+    CONTROL         "金",IDC_CHECK_GOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,28,24,10
+    CONTROL         "银",IDC_CHECK_SIVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,27,24,10
+    CONTROL         "红宝石",IDC_CHECK_REDSTONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,49,40,10
+    CONTROL         "绿宝石",IDC_CHECK_GREENSTONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,47,40,10
+END
+
+IDD_DLG_LIGHT DIALOG 0, 0, 231, 141
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "灯光设置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,174,120,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,120,50,14
+    CONTROL         "金",IDC_CHECK_GOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,22,24,10
+    CONTROL         "银",IDC_CHECK_SIVIR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,66,23,24,10
+    CONTROL         "红宝石",IDC_CHECK_REDSTONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,24,40,10
+    CONTROL         "绿宝石",IDC_CHECK_GREENSTONE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,166,24,40,10
+    GROUPBOX        "灯光颜色",IDC_STATIC_GCOLOR,7,7,217,35
+    GROUPBOX        "灯光位置",IDC_STATIC_GPOINT,7,77,217,40
+    LTEXT           "x",IDC_STATIC_PX,14,94,8,8
+    EDITTEXT        IDC_EDIT_PX,27,95,40,14,ES_AUTOHSCROLL
+    LTEXT           "y",IDC_STATIC_PY,77,97,8,8
+    EDITTEXT        IDC_EDIT_PY,95,95,40,14,ES_AUTOHSCROLL
+    LTEXT           "z",IDC_STATIC_PZ,146,99,8,8
+    EDITTEXT        IDC_EDIT_PZ,166,94,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "衰减因子",IDC_STATIC_GSUBFACTOR,7,39,217,40
+    LTEXT           "c0",IDC_STATIC_CZERO,14,55,9,8
+    EDITTEXT        IDC_EDIT_CZERO,34,52,40,14,ES_AUTOHSCROLL
+    LTEXT           "c1",IDC_STATIC_CONE,79,58,9,8
+    EDITTEXT        IDC_EDIT_CONE,102,53,40,14,ES_AUTOHSCROLL
+    LTEXT           "c2",IDC_STATIC_CTWO,148,58,9,8
+    EDITTEXT        IDC_EDIT_CTWO,173,51,40,14,ES_AUTOHSCROLL
+END
+
+IDD_DLG_GEOMODCREATE DIALOG 0, 0, 231, 227
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "几何模型产生配置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,174,206,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,206,50,14
+    LTEXT           "四、六、八、十二、二十面体控制量A",IDC_STATIC_CTR_A,12,20,133,8
+    EDITTEXT        IDC_EDIT_A,178,19,40,14,ES_AUTOHSCROLL
+    LTEXT           "球、圆柱、圆柱、圆环大半径R",IDC_STATIC_CTR_R,12,41,110,8
+    EDITTEXT        IDC_EDIT_R,178,37,40,14,ES_AUTOHSCROLL
+    LTEXT           "圆柱、圆锥高度H",IDC_STATIC_CTR_H,12,72,62,8
+    EDITTEXT        IDC_EDIT_H,179,72,40,14,ES_AUTOHSCROLL
+    LTEXT           "圆柱、圆锥半径细分数rCount",IDC_STATIC_CTR_RCOUNT,12,92,102,8
+    EDITTEXT        IDC_EDIT_RCOUNT,178,89,40,14,ES_AUTOHSCROLL
+    LTEXT           "圆柱、圆锥高度细分数hCount",IDC_STATIC_CTR_HCOUNT,13,110,104,8
+    EDITTEXT        IDC_EDIT_HCOUNT,178,107,40,14,ES_AUTOHSCROLL
+    LTEXT           "圆柱、圆锥角度细分数rAngleCount",IDC_STATIC_CTR_RANGLECOUNT,12,130,120,8
+    EDITTEXT        IDC_EDIT_RANGLECOUNT,178,127,40,14,ES_AUTOHSCROLL
+    LTEXT           "球、圆环经纬角度细分aAngleCount,bAngleCount",IDC_STATIC_CTR_ABANGLECOUNT,12,145,164,8
+    EDITTEXT        IDC_EDIT_AANGLECOUNT,12,162,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_BANGLECOUNT,58,162,40,14,ES_AUTOHSCROLL
+    LTEXT           "圆环第二半径r2",IDC_STATIC_CTR_RTWO,112,163,56,8
+    EDITTEXT        IDC_EDIT_RTWO,177,159,40,14,ES_AUTOHSCROLL
+    LTEXT           "注意：细分数量越多，点云数据越多，如果三角化时间就越长",IDC_STATIC,7,7,217,8
+    LTEXT           "曲线细分",IDC_STATIC_BEZIER_TCOUNT,14,190,33,8
+    LTEXT           "角度细分",IDC_STATIC_BEZIER_RANGLE,112,191,33,8
+    EDITTEXT        IDC_EDIT_BEZIER_TCOUNT,57,186,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_BEZIER_RANGLECOUNT,178,184,40,14,ES_AUTOHSCROLL
+    GROUPBOX        "Bezier旋转体设置",IDC_STATIC_BEZIER_SPINSETTING,7,178,217,24
+    LTEXT           "球体的递归划分次数",IDC_STATIC_GEOMOD_BALLEXLEVEL,7,56,73,8
+    EDITTEXT        IDC_EDIT_BALLEX_LEVEL,178,54,40,14,ES_AUTOHSCROLL
+END
+
+IDD_DLG_OPERATIONTIPS DIALOG 0, 0, 390, 352
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "操作说明"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,333,331,50,14
+    LTEXT           "绘图菜单：",IDC_STATIC,7,8,41,8
+    LTEXT           "点、喷枪：左键点击绘制",IDC_STATIC,7,18,89,8
+    LTEXT           "线、圆、椭圆、矩形、圆角矩形：左键按下后移动，松开左键绘制",IDC_STATIC,7,28,233,8
+    LTEXT           "曲线、橡皮：按住左键并移动进行绘制",IDC_STATIC,7,39,137,8
+    LTEXT           "弧线：左键点击四个点，右键点击后绘制（前两个点为椭圆外接矩形，后两个点为逆时针转角起、终点）",IDC_STATIC,7,50,369,8
+    LTEXT           "多边形、封闭线段、Bezier曲线：左键连续点击之后，右键点击进行绘制",IDC_STATIC,7,63,255,8
+    LTEXT           "TM文件菜单：",IDC_STATIC,7,75,51,8
+    LTEXT           "打开、关闭：可以输入路径（相对/绝对），也可以把现有文件拖动到对话框上加载",IDC_STATIC,7,85,291,8
+    LTEXT           "几何模型菜单：",IDC_STATIC,7,97,57,8
+    LTEXT           "使用对应的菜单创建对应的数据，对于正多边形，包含片面数据，如果一个面多余三个顶点的，会被拆为",IDC_STATIC,7,108,369,8
+    LTEXT           "多个三角形，对于旋转体，只有点云数据，创建完可能不会显示，请使用显示模式菜单选择显示模式。",IDC_STATIC,7,121,361,8
+    LTEXT           "三角化菜单：",IDC_STATIC,7,133,49,8
+    LTEXT           "对现有的已加载（生成的/TM文件的）的顶点数据进行三角化，如果顶点比较多，可能会出现程序无响应",IDC_STATIC,7,145,365,8
+    LTEXT           "或者卡死程序的情况，注意使用。",IDC_STATIC,7,157,121,8
+    LTEXT           "曲线建模菜单:",IDC_STATIC,7,168,51,8
+    LTEXT           "Bezier曲线绘制：同样采用左键添加控制点，右键绘制的方式",IDC_STATIC,7,178,215,8
+    LTEXT           "编辑控制点：在显示的小圆内按下鼠标左键进行移动控制点，移动完毕之后，右键显示",IDC_STATIC,7,190,305,8
+    LTEXT           "光栅显示菜单：",IDC_STATIC,10,212,57,8
+    LTEXT           "两种直线：采用左键按下并移动，左键抬起绘制的方式绘制",IDC_STATIC,10,222,209,8
+    LTEXT           "种子填充：左键点击即可在点击点位置开始，填充和点击位置颜色一致的封闭区域，不封闭会填满窗口",IDC_STATIC,10,233,361,8
+    LTEXT           "三角填充：左键点击三个点构成的三角形内填充",IDC_STATIC,10,243,169,8
+    LTEXT           "光照菜单：",IDC_STATIC,10,253,41,8
+    LTEXT           "需要选择平面着色并且以片面显示模式的时候才会进行光照显示",IDC_STATIC,10,263,225,8
+    LTEXT           "动画菜单：",IDC_STATIC,10,272,41,8
+    LTEXT           "使用动画时，注意刷新间隔，如果这个模型数据比较多，刷新间隔较短可能会卡死程序，无响应",IDC_STATIC,10,281,337,8
+    LTEXT           "F5：将会清空屏幕上的内容，但是不会清空3D模型",IDC_STATIC,7,300,178,8
+    LTEXT           "创建绕Y轴旋转体：只会创建点云数据，不会创建片面数据，你可以通过三角化来获得片面数据",IDC_STATIC,7,202,334,8
+    LTEXT           "键盘操作：",IDC_STATIC,7,291,41,8
+    LTEXT           "鼠标滚轮：进行模型缩放",IDC_STATIC,273,293,89,8
+    LTEXT           "上下左右键进行图形的X、Y轴平移，按住Shift上下键Z轴平移",IDC_STATIC,7,309,214,8
+    LTEXT           "按住X、Y、Z键，滚动鼠标滚轮，进行图形绕轴旋转，按住Shift+x/y/z进行对X、Y、Z轴反射",IDC_STATIC,7,320,320,8
+    LTEXT           "按F1打开此帮助窗口",IDC_STATIC,310,7,73,8
+    LTEXT           "点击F2，F3，F4分别对图形进行XOY，YOZ，XOZ平面反射",IDC_STATIC,7,331,204,8
+END
+
+IDD_DLG_CARTONSETTING DIALOG 0, 0, 132, 145
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "动画配置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,75,124,50,14
+    PUSHBUTTON      "取消",IDCANCEL,7,124,50,14
+    CONTROL         "开启动画",IDC_CHECK_OPENCARTON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,11,48,10
+    CONTROL         "x轴",IDC_CHECK_SPINX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,64,28,10
+    CONTROL         "y轴",IDC_CHECK_SPINY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,85,28,10
+    CONTROL         "z轴",IDC_CHECK_SPINZ,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,108,28,10
+    EDITTEXT        IDC_EDIT_SPINX,74,64,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SPINY,73,84,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SPINZ,73,108,40,14,ES_AUTOHSCROLL
+    LTEXT           "旋转轴",IDC_STATIC,18,50,25,8
+    LTEXT           "旋转角度增量",IDC_STATIC,73,51,49,8
+    LTEXT           "刷新毫秒间隔",IDC_STATIC,17,29,49,8
+    EDITTEXT        IDC_EDIT_UPDATETIME,73,26,40,14,ES_AUTOHSCROLL
+END
+
+IDD_DLG_BASEOPE DIALOG 0, 0, 376, 244
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "基本操作预览"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,319,223,50,14
+    LTEXT           "基本绘图要注意什么？",IDC_STATIC,7,7,81,8
+    LTEXT           "画刷颜色默认是白色，画笔默认是黑色，宽度为1。需要更改颜色和大小请设置",IDC_STATIC,7,16,277,8
+    LTEXT           "特殊的：多边形，封闭线段和Bezier曲线需要用右键确定绘制才会显示",IDC_STATIC,7,36,247,8
+    LTEXT           "怎么导入一个TM文件？",IDC_STATIC,7,46,83,8
+    LTEXT           "一般的：使用左键点击或者按住左键拖动来绘制",IDC_STATIC,7,26,169,8
+    LTEXT           "点击TM文件菜单-打开子菜单-输入文件路径或把TM文件拖到输入框上-确认就完成数据的导入了",IDC_STATIC,7,56,331,8
+    LTEXT           "我的三维模型怎么没显示？",IDC_STATIC,7,65,97,8
+    LTEXT           "由于默认不显示三维图形，所以需要在显示模式菜单-选择显示模式（点云、线框、片面）-即可显示",IDC_STATIC,7,73,349,8
+    LTEXT           "也或者模型只有点云数据，没有片面数据，不能显示线框和片面，可以设置显示模式或者进行三角化",IDC_STATIC,7,82,353,8
+    LTEXT           "几何模型数据生成之后怎么不显示？",IDC_STATIC,7,91,129,8
+    LTEXT           "尝试修改显示模式，对于旋转体模型，只包含点云数据，如果要显示线框和片面，尝试三角化",IDC_STATIC,7,100,329,8
+    LTEXT           "三角化数据怎么无响应了？",IDC_STATIC,7,110,97,8
+    LTEXT           "如果你的点数据比较多，三角化将会很慢，请耐心等待",IDC_STATIC,7,120,193,8
+    LTEXT           "生成的几何模型细分数量都不建议大于80，否则对其进行三角化将会很慢",IDC_STATIC,7,129,257,8
+    LTEXT           "怎么生成Bezier旋转体数据？",IDC_STATIC,7,138,103,8
+    LTEXT           "以生成Y轴旋转体为例：首先使用曲线建模菜单，Bezier曲线绘制子菜单绘制一条靠窗口左边框的曲线",IDC_STATIC,7,149,356,8
+    LTEXT           "注意点击右键才会显示绘制的Bezier曲线，接下来选择创建Y轴旋转体，改变显示模式为点云，即可看见",IDC_STATIC,7,159,364,8
+    LTEXT           "模型，接下来进行三角化即可显示线框模型和片面模型，重新点击Bezier曲线绘制菜单可以绘制新曲线",IDC_STATIC,7,170,359,8
+    LTEXT           "填充怎么使用？",IDC_STATIC,7,181,57,8
+    LTEXT           "种子填充需要给定一个封闭的区域，否则将会填满整个窗口，可能会比较费时间",IDC_STATIC,7,191,281,8
+    LTEXT           "三角填充只需要左键点击三个点形成三角形，即可进行填充，颜色使用画刷颜色",IDC_STATIC,7,200,281,8
+    LTEXT           "深度缓冲下怎么不显示光照了？",IDC_STATIC,7,210,113,8
+    LTEXT           "深度缓冲由于效果太平面，所以没有使用光照，只使能随机颜色进行区分片面。",IDC_STATIC,7,220,281,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "FileDescription", "ComputerGraphics Microsoft 基础类应用程序"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "ComputerGraphics"
+            VALUE "LegalCopyright", "版权所有 (C) 2019 - Ugex.Savelar"
+            VALUE "OriginalFilename", "ComputerGraphics.EXE"
+            VALUE "ProductName", "ComputerGraphics 应用程序"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_DLG_COLOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_DLG_SIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_DLG_INPUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_DLG_GVARY, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 298
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 223
+    END
+
+    IDD_DLG_METERIAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 116
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 92
+    END
+
+    IDD_DLG_LIGHT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 134
+    END
+
+    IDD_DLG_GEOMODCREATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 224
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 220
+    END
+
+    IDD_DLG_OPERATIONTIPS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 383
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 345
+    END
+
+    IDD_DLG_CARTONSETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 125
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_DLG_BASEOPE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 369
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 237
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "ComputerGraphics\n\nMy\n\n\nMy.Document\nMy Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "ComputerGraphics"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "扩展名"
+    ID_INDICATOR_CAPS       "大写"
+    ID_INDICATOR_NUM        "数字"
+    ID_INDICATOR_SCRL       "滚动"
+    ID_INDICATOR_OVR        "改写"
+    ID_INDICATOR_REC        "记录"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "建立新文档\n新建"
+    ID_FILE_OPEN            "打开一个现有文档\n打开"
+    ID_FILE_CLOSE           "关闭活动文档\n关闭"
+    ID_FILE_SAVE            "保存活动文档\n保存"
+    ID_FILE_SAVE_AS         "将活动文档以一个新文件名保存\n另存为"
+    ID_FILE_PAGE_SETUP      "改变打印选项\n页面设置"
+    ID_FILE_PRINT_SETUP     "改变打印机及打印选项\n打印设置"
+    ID_FILE_PRINT           "打印活动文档\n打印"
+    ID_FILE_PRINT_PREVIEW   "显示整页\n打印预览"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "显示程序信息，版本号和版权\n关于"
+    ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "打开该文档"
+    ID_FILE_MRU_FILE2       "打开该文档"
+    ID_FILE_MRU_FILE3       "打开该文档"
+    ID_FILE_MRU_FILE4       "打开该文档"
+    ID_FILE_MRU_FILE5       "打开该文档"
+    ID_FILE_MRU_FILE6       "打开该文档"
+    ID_FILE_MRU_FILE7       "打开该文档"
+    ID_FILE_MRU_FILE8       "打开该文档"
+    ID_FILE_MRU_FILE9       "打开该文档"
+    ID_FILE_MRU_FILE10      "打开该文档"
+    ID_FILE_MRU_FILE11      "打开该文档"
+    ID_FILE_MRU_FILE12      "打开该文档"
+    ID_FILE_MRU_FILE13      "打开该文档"
+    ID_FILE_MRU_FILE14      "打开该文档"
+    ID_FILE_MRU_FILE15      "打开该文档"
+    ID_FILE_MRU_FILE16      "打开该文档"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
+    ID_PREV_PANE            "切换回前一个窗格\n前一窗格"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "将活动的窗口分隔成窗格\n分隔"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "删除被选对象\n删除"
+    ID_EDIT_CLEAR_ALL       "全部删除\n全部删除"
+    ID_EDIT_COPY            "复制被选对象并将其置于剪贴板上\n复制"
+    ID_EDIT_CUT             "剪切被选对象并将其置于剪贴板上\n剪切"
+    ID_EDIT_FIND            "查找指定的正文\n查找"
+    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
+    ID_EDIT_REPEAT          "重复上一步操作\n重复"
+    ID_EDIT_REPLACE         "用不同的正文替换指定的正文\n替换"
+    ID_EDIT_SELECT_ALL      "选择整个文档\n选择全部"
+    ID_EDIT_UNDO            "撤消最后一步操作\n撤消"
+    ID_EDIT_REDO            "重新执行先前已撤消的操作\n重新执行"
+END
+
+STRINGTABLE
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n显隐工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n显隐状态栏"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "改变窗口大小"
+    AFX_IDS_SCMOVE          "改变窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小成图标"
+    AFX_IDS_SCMAXIMIZE      "把窗口放大到最大尺寸"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到先前的文档窗口"
+    AFX_IDS_SCCLOSE         "关闭活动的窗口并提示保存所有文档"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "把窗口恢复到正常大小"
+    AFX_IDS_SCTASKLIST      "激活任务表"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预阅"
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE 4, 2
+#pragma code_page(936)
+#endif //_WIN32
+#include "res\ComputerGraphics.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.chs\afxres.rc"          // Standard components
+#include "l.chs\afxprint.rc"        // printing/print preview resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

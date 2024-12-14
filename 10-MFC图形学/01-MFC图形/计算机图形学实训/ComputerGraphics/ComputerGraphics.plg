@@ -1,0 +1,113 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ComputerGraphics - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/ComputerGraphics.res" /d "_DEBUG" "C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\ComputerGraphics.rc"" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7E.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/ComputerGraphics.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\ComputerGraphics.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\ComputerGraphicsDoc.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\ComputerGraphicsView.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgBaseOperationHelp.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgCartonSetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgColorSetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgGeoModCreateSetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgGraphVarySetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgInputBox.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgLightSetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgMaterialSetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgOperationTips.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\DlgSizeSetting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GData.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GGrating.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GHideZBuffer.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GLighting.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GProjection.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GStereo.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GTMFile.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GTranglelized.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\GVary.cpp"
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\MainFrm.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7E.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7F.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/ComputerGraphics.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Documents and Settings\Administrator\桌面\VC6_DownZa.Cn\MyProjects\ComputerGraphics\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP7F.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP80.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/ComputerGraphics.pdb" /debug /machine:I386 /out:"Debug/ComputerGraphics.exe" /pdbtype:sept 
+".\Debug\ComputerGraphics.obj"
+".\Debug\ComputerGraphicsDoc.obj"
+".\Debug\ComputerGraphicsView.obj"
+".\Debug\DlgBaseOperationHelp.obj"
+".\Debug\DlgCartonSetting.obj"
+".\Debug\DlgColorSetting.obj"
+".\Debug\DlgGeoModCreateSetting.obj"
+".\Debug\DlgGraphVarySetting.obj"
+".\Debug\DlgInputBox.obj"
+".\Debug\DlgLightSetting.obj"
+".\Debug\DlgMaterialSetting.obj"
+".\Debug\DlgOperationTips.obj"
+".\Debug\DlgSizeSetting.obj"
+".\Debug\GData.obj"
+".\Debug\GGrating.obj"
+".\Debug\GHideZBuffer.obj"
+".\Debug\GLighting.obj"
+".\Debug\GProjection.obj"
+".\Debug\GStereo.obj"
+".\Debug\GTMFile.obj"
+".\Debug\GTranglelized.obj"
+".\Debug\GVary.obj"
+".\Debug\MainFrm.obj"
+".\Debug\StdAfx.obj"
+".\Debug\ComputerGraphics.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP80.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+ComputerGraphics.cpp
+ComputerGraphicsDoc.cpp
+ComputerGraphicsView.cpp
+DlgBaseOperationHelp.cpp
+DlgCartonSetting.cpp
+DlgColorSetting.cpp
+DlgGeoModCreateSetting.cpp
+DlgGraphVarySetting.cpp
+DlgInputBox.cpp
+DlgLightSetting.cpp
+DlgMaterialSetting.cpp
+DlgOperationTips.cpp
+DlgSizeSetting.cpp
+GData.cpp
+GGrating.cpp
+GHideZBuffer.cpp
+GLighting.cpp
+GProjection.cpp
+GStereo.cpp
+GTMFile.cpp
+Generating Code...
+Compiling...
+GTranglelized.cpp
+GVary.cpp
+MainFrm.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+ComputerGraphics.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
